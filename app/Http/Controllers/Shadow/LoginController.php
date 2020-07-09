@@ -23,7 +23,7 @@ class LoginController extends ShadowAuthController
     /**
      * 是否强制登录。
      */
-    const MUST_USER_LOGIN = true;
+    const MUST_USER_LOGIN = false;
 
     public function onPost()
     {
