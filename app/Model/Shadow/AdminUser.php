@@ -89,7 +89,7 @@ class AdminUser extends Model
 
     /**
      * 检查密码是否一致。
-     * @param  string $pwd  密码明文
+     * @param  string $password  密码明文
      * @return bool
      */
     public function checkPassword(string $password = ''): bool

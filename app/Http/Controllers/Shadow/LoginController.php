@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * Api公用控制器。
+ * 登录控制器。
  *
  * @author    YingMuzZ <huadyingmu@gmail.com>
  * @copyright © 2020 YingMuzZ
@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Shadow;
 
-use Input;
 use App\Model\Shadow\AdminUser;
 use App\Http\Components\GoogleAuthenticator;
 
@@ -20,6 +19,11 @@ class LoginController extends ShadowAuthController
      * 防止爆破redis key。
      */
     const ATTACK_RDS_LOGIN_KEY = 'attack_shadow_login:';
+
+    /**
+     * 是否强制登录。
+     */
+    const MUST_USER_LOGIN = true;
 
     public function onPost()
     {

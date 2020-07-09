@@ -19,13 +19,14 @@ class ApiException extends Exception
      * @var array
      */
     protected static $errors = [
-        'Token.error'                                => [-1,       '身份令牌无效～'],
-        'Api.wait'                                   => [-100,     '接口请求频繁～'],
-        'Password.generate.error'                    => [10000,    '请输入12~40位密码～'],
-        'Login.input.error'                          => [10001,    '账号或密码输入错误～'],
-        'Login.user.not.found'                       => [10002,    '账号或密码输入错误～'],
-        'Login.google.code.error'                    => [10003,    '账号或密码输入错误～'],
-        'Password.check.error'                       => [10004,    '账号或密码输入错误～'],
+        'Token.error'                          => [-1,       '身份令牌无效～'],
+        'Api.wait'                             => [-100,     '接口请求频繁～'],
+        'User.must.login'                      => [-101,     '用户未登录～'],
+        'Password.generate.error'              => [10000,    '请输入12~40位密码～'],
+        'Login.input.error'                    => [10001,    '账号或密码输入错误～'],
+        'Login.user.not.found'                 => [10002,    '账号或密码输入错误～'],
+        'Login.google.code.error'              => [10003,    '账号或密码输入错误～'],
+        'Password.check.error'                 => [10004,    '账号或密码输入错误～'],
     ];
 
     /**

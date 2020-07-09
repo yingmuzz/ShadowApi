@@ -8,7 +8,6 @@
  */
 
 //登录
-$router->get('/login', 'Shadow\LoginController@onPost');
 $router->post('/login', 'Shadow\LoginController@onPost');
 
 //退出登录

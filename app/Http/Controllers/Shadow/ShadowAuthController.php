@@ -11,8 +11,10 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Shadow;
 
 use Log;
+use JWTAuth;
 use Illuminate\Http\Request;
 use App\Exceptions\ApiException;
+use App\Http\Model\Shadow\AdminUser;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\ApiController;
 
@@ -39,21 +41,43 @@ class ShadowAuthController extends ApiController
     const HTTP_RESPONSE_OK = 200;
 
     /**
+     * 是否强制必须用户登录。
+     */
+    const MUST_USER_LOGIN = true;
+
+    /**
      * 接收POST请求的数据。
      * @var array
      */
     protected $post_params = [];
 
-    public function __construct(Request $request)
-    {
-        $this->post_params = $request->all();
-    }
-
     /**
      * 授权用户。
      * @var AdminUser
      */
-    public $user;
+    public $user = false;
+
+    public function __construct(Request $request)
+    {
+        $this->post_params = $request->all();
+        $s_token = $this->post_params['token'] ?? '';
+        if ('' !== $s_token) {
+            try {
+                $this->user = JWTAuth::toUser($s_token);
+            } catch (\Exception $e) {
+            }
+        }
+        if (true === static::MUST_USER_LOGIN && (!$this->user || AdminUser::STATUS_ENABLE != $this->user->status)) {
+            if ('' !== $s_token) {
+                try {
+                    JWTAuth::invalidate($s_token);
+                } catch (\Exception $e) {
+                }
+            }
+
+            ApiException::exJson('User.must.login');
+        }
+    }
 
     public function onPost()
     {
