@@ -13,8 +13,8 @@ namespace App\Http\Controllers\Shadow;
 use Log;
 use JWTAuth;
 use Illuminate\Http\Request;
+use App\Model\Shadow\AdminUser;
 use App\Exceptions\ApiException;
-use App\Http\Model\Shadow\AdminUser;
 use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\ApiController;
 
@@ -44,6 +44,11 @@ class ShadowAuthController extends ApiController
      * 是否强制必须用户登录。
      */
     const MUST_USER_LOGIN = true;
+
+    /**
+     * 页码
+     */
+    const PAGE_SIZE = 20;
 
     /**
      * 接收POST请求的数据。
