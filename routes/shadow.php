@@ -12,3 +12,6 @@ $router->post('/login', 'Shadow\LoginController@onPost');
 
 //退出登录
 $router->post('/logout', 'Shadow\LogoutController@onPost');
+
+//获取管理员列表
+$router->post('/admin/query', 'Shadow\AdminQueryController@onPost');

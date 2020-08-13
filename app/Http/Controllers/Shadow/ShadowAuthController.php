@@ -48,7 +48,7 @@ class ShadowAuthController extends ApiController
     /**
      * 页码
      */
-    const PAGE_SIZE = 20;
+    const PAGE_SIZE = 10;
 
     /**
      * 接收POST请求的数据。
@@ -65,7 +65,7 @@ class ShadowAuthController extends ApiController
     public function __construct(Request $request)
     {
         $this->post_params = $request->all();
-        $s_token = $this->post_params['token'] ?? '';
+        $s_token = $request->header('Authorization');
         if ('' !== $s_token) {
             try {
                 $this->user = JWTAuth::toUser($s_token);
