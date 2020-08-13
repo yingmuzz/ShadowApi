@@ -36,7 +36,10 @@ class AdminQueryController extends ShadowAuthController
                     'user_id' => $user->id,
                     'account' => $user->account,
                     'status' => $user->status,
-                    'add_time' => $user->add_time
+                    'add_time' => $user->add_time,
+                    'permission_btn_edit' => $user->status == 1 ? true : false,
+                    'permission_btn_del' => $user->status == 1 ? true : false,
+                    'permission_btn_google' => $user->status == 1 ? true : false
                 );
             }
         }
